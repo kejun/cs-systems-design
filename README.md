@@ -8,9 +8,11 @@ A Chinese interactive guide to computer systems design, inspired by the explorat
 
 Site URL: [kejun.github.io/cs-systems-design](https://kejun.github.io/cs-systems-design/).
 
-The `Build and deploy GitHub Pages` workflow checks and builds every pull request. Updates to `main` also publish `dist/` to GitHub Pages after those checks pass. It uses Node.js 24 and the committed dependency lockfile; no personal token or external runtime service is required.
+The `Build and deploy GitHub Pages` workflow checks and builds every pull request. Updates to `main` also publish `dist/` to GitHub Pages after those checks pass. It uses Node.js 24 and the committed dependency lockfile; the site needs no external runtime service.
 
 For initial setup, set **Settings → Pages → Build and deployment → Source** to **GitHub Actions**, then run the workflow from the Actions tab if the initial run has already finished. Site assets use relative paths so the `/cs-systems-design/` project prefix works without changing application routes.
+
+Alternatively, enable Pages with a personal access token: add an Actions repository secret named `PAGES_ADMIN_TOKEN`, limited to this repository with **Pages: Read and write** and **Administration: Read and write** permissions, then re-run the failed deployment job. The workflow uses this token to enable Pages with the Actions build type. After the first successful deployment, the secret can be removed; subsequent deployments use the built-in `GITHUB_TOKEN`. Never commit the token to source files.
 
 ## Build and serve
 
