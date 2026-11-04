@@ -1,5 +1,11 @@
 // Audited teaching content. Frames: label, from, to, event, explanation, state, relation kind.
 const SOURCES = {
+  "fsync_notes": {
+    "name": "Linux man-pages · fsync(2)",
+    "url": "https://man7.org/linux/man-pages/man2/fsync.2.html",
+    "note": "文件数据同步到存储设备的语义、返回值与错误；目录项另有同步要求。",
+    "kind": "具体机制资料"
+  },
   "csapp": {
     "name": "CMU 15-213 · Computer Systems",
     "url": "https://csapp.cs.cmu.edu/3e/curriculum.html",

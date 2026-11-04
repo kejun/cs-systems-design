@@ -30,6 +30,8 @@ The mechanism diagram uses the actual `react-isokit@0.5.0` library (`Plate`, `Bo
 
 Each topic includes two independent four-stage scenarios (54 scenarios / 216 stages in total), state observations, scenario-specific conceptual pseudocode, tradeoffs, pitfalls, related topics, and primary sources. A lesson is a simplified teaching model, not a production implementation or an exhaustively verified protocol.
 
+The existing mechanism panel also includes three deeper explanations per topic and section-level reading links to [Hansimov's Chinese CSAPP edition](https://hansimov.gitbook.io/csapp/). These notes cover concrete state, execution and failure boundaries without changing the three-part navigation or diagrams. CSAPP provides the systems foundations; database and distributed protocol guarantees retain their specialist sources. The source mapping and editorial boundaries are documented in [docs/csapp-expansion.md](docs/csapp-expansion.md).
+
 The isometric shapes represent logical participants, not four physical hosts. They distinguish processing, storage, queues, conditions, and records without encoding quantities in the illustration. Horizontal labels remain readable. Relation semantics remain controlled by the audited course data: requests/data use directed transfers; control/checks use dashed lines; rejection ends at the recipient; undelivered messages stop midway; internal operations have no transfer; comparisons have no arrow. IsoKit supplies the drawing; the application supplies playback and protocol teaching data.
 
 The knowledge graph includes all 27 topics and highlights undirected direct relationships for the selected topic, including cross-section links. It does not imply execution order or prerequisites.
@@ -39,6 +41,7 @@ Playback: Space to play/pause (outside interactive controls), left/right arrows 
 ## Source layout
 
 - `dist/data.js`: audited course content and source mappings.
+- `dist/mechanisms.js`: expanded explanations for all 27 topics, CSAPP foundations and section references.
 - `dist/app.js`: navigation, scenario state, traces, details, and knowledge graph.
 - `dist/icons.svg`: shared SVG symbols for every interface icon, including theme/playback states and graph completion marks; colors inherit the current theme.
 - `src/isokit-scene.jsx`: IsoKit scene and logical participant illustrations.

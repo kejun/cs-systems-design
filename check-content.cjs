@@ -1,7 +1,16 @@
 const vm=require('node:vm'),fs=require('node:fs'),assert=require('node:assert/strict');
 const scope={};vm.runInNewContext(fs.readFileSync('dist/data.js','utf8')+';this.lessons=LESSONS;this.sources=SOURCES;',scope);
+vm.runInNewContext(fs.readFileSync('dist/mechanisms.js','utf8')+';this.details=MECHANISM_DETAILS;this.readings=CSAPP_READINGS;',scope);
 const lessons=scope.lessons,ids=new Set(lessons.map(l=>l.id));
 assert.equal(lessons.length,27);assert.equal(ids.size,27);assert.deepEqual([0,1,2].map(g=>lessons.filter(l=>l.group===g).length),[8,8,11]);
+assert.deepEqual(Object.keys(scope.details).sort(),[...ids].sort(),'Every existing topic needs mechanism details');
+for(const l of lessons){
+  const d=scope.details[l.id];
+  assert(d.sections.length>0&&d.sections.every(s=>s.title&&s.body),l.id+' mechanism sections');
+  assert(d.foundation&&d.readings.length>0,l.id+' CSAPP foundation and reading');
+  for(const id of d.readings){const r=scope.readings[id];assert(r&&r.section&&r.title&&r.path&&r.note,l.id+' CSAPP reference '+id);}
+  for(const id of d.sources||[])assert(scope.sources[id],l.id+' additional source '+id);
+}
 const kinds=new Set(['request','data','control','check','reject','lost','local','compare']);
 let count=0;
 for(const l of lessons){
